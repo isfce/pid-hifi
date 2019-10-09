@@ -1,0 +1,47 @@
+
+
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+apply plugin: 'eclipse'
+// indique à Gradle de compiler en UTF8 
+compileJava.options.encoding= 'UTF-8'
+compileTestJava.options.encoding= 'UTF-8'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    mavenLocal()
+    mavenCentral() 
+    //jcenter()
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+
+// Framework Spring Core
+	compile "org.springframework:spring-context:${springVersion}"
+//AOP
+	compile "org.springframework:spring-aop:${springVersion}"
+	compile "org.aspectj:aspectjweaver:${aspectJVersion}"
+
+//Logger
+    // The production code uses the SLF4J logging API at compile time
+     compile "org.slf4j:slf4j-simple:${slf4jVersion}"
+     
+//Lombok pour les setters
+	compileOnly "org.projectlombok:lombok:$lombokVersion"
+      
+// Pour les tests:
+    // les tests unitaires JUnit
+    testCompile "junit:junit:${junitVersion}"
+    // Mockito pour créer des MOCKs
+    testCompile("org.mockito:mockito-core:${mockitoVersion}")
+    // et Spring-test
+     testCompile "org.springframework:spring-test:${springVersion}"
+     
+     //permet d'avoir les logs de Gradle sur la console pour l'exécution des tests avec Gradle
+ test {
+    testLogging.showStandardStreams = true
+	}
+
+}
+
