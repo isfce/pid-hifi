@@ -28,13 +28,14 @@ dependencies {
      compile "org.slf4j:slf4j-simple:${slf4jVersion}"
      
 //Lombok pour les setters
-	compileOnly "org.projectlombok:lombok:$lombokVersion"
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"  
       
 // Pour les tests:
     // les tests unitaires JUnit
     testCompile "junit:junit:${junitVersion}"
     // Mockito pour créer des MOCKs
-    testCompile("org.mockito:mockito-core:${mockitoVersion}")
+    testCompile "org.mockito:mockito-core:${mockitoVersion}"
     // et Spring-test
      testCompile "org.springframework:spring-test:${springVersion}"
      

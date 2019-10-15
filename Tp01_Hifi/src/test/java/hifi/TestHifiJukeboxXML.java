@@ -13,7 +13,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @ActiveProfiles(value = "Jukebox")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:META-INF/spring/hifi/hifiXmlConfig.xml")
+
+//Par défaut il cherchera le fichier (TestHifiJukeBoxXML-context.xml) dans "scr/test/resources/hifi"
+@ContextConfiguration("classpath:META-INF/spring/hifi/TestHifiJukeboxXML.xml")
 public class TestHifiJukeboxXML {
 	@Autowired
 	ApplicationContext contexte;
@@ -25,15 +27,12 @@ public class TestHifiJukeboxXML {
 		// vérifie si le volume est à 8
 		assertEquals(8, ampli.getVolume());
 		// vérifie la présence d'un Tuner
-		assertNotNull(ampli.getTuner());
+
 		// vérifie la présence d'un lecteur multiCD
-		assertEquals(MultiCdPlayer.class, ampli.getCdPlayer().getClass());
-		// vérifie la présence d'un chargeur avec les Beatles "chargeurBeatles"
-		assertNotNull(contexte.getBean("chargeurBeatles"));
-		// vérifie le chargement du chargeur avec les Beatles
-		assertEquals(contexte.getBean("chargeurBeatles"), ((MultiCdPlayer) ampli.getCdPlayer()).getChargeur());
-		// vérifie la présence d'un chargeur avec les Stones "chargeurStones"
-		assertNotNull(contexte.getBean("chargeurStones"));
+		
+		// vérifie la présence d'un chargeur avec les Beatles "chargeurBeatles"		assertNotNull(contexte.getBean("chargeurBeatles"));
+		// vérifie le chargement du chargeur avec les Beatles		assertEquals(contexte.getBean("chargeurBeatles"), ((MultiCdPlayer) ampli.getCdPlayer()).getChargeur());
+		// vérifie la présence d'un chargeur avec les Stones "chargeurStones"		assertNotNull(contexte.getBean("chargeurStones"));
 
 	}
 
